@@ -1,16 +1,23 @@
 @extends('layout')
 @section('content')
     <style type="text/css">
-        .back{
-            width: 30%;
-            padding: 10%;
-            margin-left: 25%;
+        .head{
+            margin-left: 35%;
+        }
+
+        .container{
+            background-color:white;
+            width: 25%;
+            margin-left: 35%;
         }
     </style>
-    <div class="back">
+    <div class="head">
     <h1>Album</h1>
+    <a href="{{ route('album.create') }}">+ Tambah +</a>
         <br>
         <br>
+    </div>
+    <div class="container">
     <table border="1">
         <thead>
         <tr>
@@ -45,3 +52,4 @@
         </tbody>
     </table>
 @endsection
+    </div>

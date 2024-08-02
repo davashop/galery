@@ -27,7 +27,7 @@ class AlbumController extends Controller
      */
     public function create()
     {
-        //
+        return view("album.tambah");
     }
 
     /**
@@ -35,7 +35,17 @@ class AlbumController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $nama = $request->nama;
+        $deskripsi = $request->deskripsi;
+        $tgl_buat = $request->tgl_buat;
+
+        $dataalbum = new album();
+        $dataalbum->nama_album = $nama;
+        $dataalbum->deskripsi = $deskripsi;
+        $dataalbum->tanggal_dibuat = $tgl_buat;
+        $dataalbum->save();
+
+        return redirect("/album");
     }
 
     /**
@@ -49,24 +59,43 @@ class AlbumController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
-        //
+        $album = album::where("id", $id)->first();
+
+        $data = [
+            "album" => $album
+        ];
+
+        return view("album.edit", $data);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
-        //
+        $nama = $request->nama;
+        $deskripsi = $request->deskripsi;
+        $tgl_buat = $request->tgl_buat;
+
+        album::where("id", $id)->update([
+            "nama_album" => $nama,
+            "deskripsi" => $deskripsi,
+            "tanggal_dibuat" => $tgl_buat,
+        ]);
+
+        return redirect("/album");
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        $album = album::where("id",$id)->first();
+        $album->delete();
+
+        return redirect("/album");
     }
 }
