@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AlbumController;
+use App\Http\Controllers\FotoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,6 +19,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// Album
 route::get("/album", [AlbumController::class, "index"]);
 
 route::get("/album/create", [AlbumController::class, "create"])->name("album.create");
@@ -27,3 +29,6 @@ route::get("/album/{id}", [AlbumController::class, "edit"]);
 route::put("/album/{id}", [AlbumController::class, "update"])->name("album.update");
 
 route::delete("/album/{id}", [AlbumController::class, "destroy"]);
+
+// Foto
+route::resource("/foto", FotoController::class);
