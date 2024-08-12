@@ -2,7 +2,10 @@
 @section('content')
     <div>
         <h1>Tambah Foto</h1>
-
+            <form action="{{ route('foto.index') }}">
+                <button>Kembali</button>
+            </form>
+            <br>
             <form action="{{ route('foto.store') }}" method="post" enctype="multipart/form-data">
             @csrf
             <div>

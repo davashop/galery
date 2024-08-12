@@ -2,13 +2,13 @@
 @section('content')
 <style type="text/css">
         .head{
-            margin-left: 35%;
+            margin-left: 5%;
         }
 
         .container{
             background-color:white;
-            width: 25%;
-            margin-left: 35%;
+            width:90%;
+            margin-left: 5%;
         }
     </style>
     <div class="head">
@@ -18,7 +18,7 @@
         <br>
     </div>
     <div class="container">
-        <table border="1">
+        <table border="1" width="100%">
             <thead>
                 <tr>
                     <td>No</td>
@@ -39,12 +39,14 @@
                         <td>{{ $no++ }}</td>
                         <td>{{ $foto->album->nama_album }}</td>
                         <td>{{ $foto->judul }}</td>
+                        <td>{{ $foto->deskripsi }}</td>
                         <td>{{ date("d-m-y"), strtotime($foto->tanggal_unggah) }}</td>
-                        <td><img src="{{ asset("storage/{$foto->lokasi_file}") }}" alt="{{ $foto->judul }}" width="40%"></td>
+                        <td><img src="{{ asset("storage/{$foto->lokasi_file}") }}" alt="{{ $foto->judul }}" width="25%"></td>
                         <td>
-                            <a href="{{ route('foto.edit', $album->id) }}">Edit</a>
-                                ||
-                            <form action="{{ route('foto.destroy', $album->id) }}" method="post">
+                            <a href="{{ route('foto.edit', $foto->id) }}">Edit</a>
+                            <br>
+                            ||
+                            <form action="{{ route('foto.destroy', $foto->id) }}" method="post">
                                 @method('delete')
                                 @csrf
                                 <button type="submit">Delete</button>
